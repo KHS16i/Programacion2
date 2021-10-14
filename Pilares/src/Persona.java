@@ -11,12 +11,13 @@ public class Persona {
     short edad = 0;
 
     //para hacer que solo se escriba en la variable una vez!
+    //set siempre espera recibir un parametro
     void setId(int valor){
         if(id <= 0){
             id = valor;
         }
     }
-
+    //get siempre devuelve un valor
     public int geId(){
         return id;
     }
