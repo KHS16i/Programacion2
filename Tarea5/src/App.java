@@ -5,7 +5,8 @@ import javax.swing.JOptionPane;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int op, id = 0;
+        int op, id = 0, cel, buscar;
+        String nombre, correo;
         List<Cliente> clientes = new ArrayList<Cliente>();
 
         do {
@@ -19,29 +20,84 @@ public class App {
                             "Digite con el numero correspondiente que desea hacer:\n\n1-Registro de nuevo cliente de crédito\n2-Ver todos los clientes de crédito registrados\n3-Modificar un cliente de crédito\n4-Eliminar un cliente de crédito\n5-Volver al menu principal"));
                     switch (op) {
                     case 1:
-                        String nombre = JOptionPane.showInputDialog("Digite el nombre");
-                        int cel = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de telefono"));
-                        String correo = JOptionPane.showInputDialog("Digite su correo");
+                        nombre = JOptionPane.showInputDialog("Digite el nombre");
+                        cel = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de telefono"));
+                        correo = JOptionPane.showInputDialog("Digite su correo");
                         id = id + 1;
 
                         clientes.add(new Cliente(nombre, cel, correo, id));
                         break;
                     case 2:
-                        System.out.println("Total de Clientes de Credito: ");
-                        System.out.println();
-                        clientes.stream()
-                                .forEach(c -> System.out.println(
-                                        "Nombre : " + c.getNombre() + "\nTelefono: " + c.getTelefono() + "\nCorreo: "
-                                                + c.getCorreo() + "\nId de Cliente de Credito: " + c.getId() + "\n"));
+                        if (clientes.isEmpty() == false) {
+                            System.out.println("Total de Clientes de Credito: ");
+                            System.out.println();
+                            clientes.stream()
+                                    .forEach(c -> System.out.println("Nombre : " + c.getNombre() + "\nTelefono: "
+                                            + c.getTelefono() + "\nCorreo: " + c.getCorreo()
+                                            + "\nId de Cliente de Credito: " + c.getId() + "\n"));
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No hay registro de clientes de credito.", "Aviso!",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        }
 
                         break;
                     case 3:
+                        buscar = Integer
+                                .parseInt(JOptionPane.showInputDialog("Digite el ID del cliente que desea editar"));
+                        buscar = buscar - 1;
+                        do {
+                            op = 0;
+                            op = Integer.parseInt(JOptionPane.showInputDialog(
+                                    "Digite que desea editar: \n\n1-Nombre\n2-Numero telefonico\n3-Correo Electronico\n4-Volver al menu anterior"));
+
+                            switch (op) {
+                            case 1:
+                                nombre = JOptionPane.showInputDialog("Digite el nombre");
+                                clientes.get(buscar).setNombre(nombre);
+                                break;
+                            case 2:
+                                cel = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de telefono"));
+                                clientes.get(buscar).setTelefono(cel);
+                                break;
+                            case 3:
+                                correo = JOptionPane.showInputDialog("Digite su correo");
+                                clientes.get(buscar).setCorreo(correo);
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Por favor digite una opcion", "ERROR",
+                                        JOptionPane.ERROR_MESSAGE);
+                                break;
+                            }
+                        } while (op != 4);
+
                         break;
                     case 4:
+                        buscar = Integer
+                                .parseInt(JOptionPane.showInputDialog("Digite el ID del cliente que desea eliminar"));
+
+                        for (int i = 0; i > clientes.size(); i++) {
+                            if (clientes.get(buscar).getId() == buscar) {
+                                JOptionPane.showMessageDialog(null,
+                                        "El cliente con el ID " + buscar + " ha sido eliminado.", "Eliminar cliente",
+                                        JOptionPane.OK_CANCEL_OPTION);
+                                buscar = buscar - 1;
+                                clientes.remove(buscar);
+
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "No hay registro de algun cliente de credito con ese ID.", "Aviso!",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
+
                         break;
                     case 5:
                         break;
                     default:
+                        JOptionPane.showMessageDialog(null, "Por favor digite una opcion", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
                         break;
                     }
                 } while (op != 5);
@@ -54,6 +110,7 @@ public class App {
             case 4:
                 break;
             default:
+                JOptionPane.showMessageDialog(null, "Por favor digite una opcion", "ERROR", JOptionPane.ERROR_MESSAGE);
                 break;
 
             }
