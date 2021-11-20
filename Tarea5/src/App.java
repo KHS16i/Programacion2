@@ -45,51 +45,52 @@ public class App {
                         buscar = Integer
                                 .parseInt(JOptionPane.showInputDialog("Digite el ID del cliente que desea editar"));
                         buscar = buscar - 1;
-                        do {
-                            op = 0;
-                            op = Integer.parseInt(JOptionPane.showInputDialog(
-                                    "Digite que desea editar: \n\n1-Nombre\n2-Numero telefonico\n3-Correo Electronico\n4-Volver al menu anterior"));
+                        if (buscar < 0 || buscar >= clientes.size()) {
+                            JOptionPane.showMessageDialog(null, "No hay registro de clientes de credito.", "Aviso!",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            do {
+                                op = 0;
+                                op = Integer.parseInt(JOptionPane.showInputDialog(
+                                        "Digite que desea editar: \n\n1-Nombre\n2-Numero telefonico\n3-Correo Electronico\n4-Volver al menu anterior"));
 
-                            switch (op) {
-                            case 1:
-                                nombre = JOptionPane.showInputDialog("Digite el nombre");
-                                clientes.get(buscar).setNombre(nombre);
-                                break;
-                            case 2:
-                                cel = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de telefono"));
-                                clientes.get(buscar).setTelefono(cel);
-                                break;
-                            case 3:
-                                correo = JOptionPane.showInputDialog("Digite su correo");
-                                clientes.get(buscar).setCorreo(correo);
-                                break;
-                            case 4:
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "Por favor digite una opcion", "ERROR",
-                                        JOptionPane.ERROR_MESSAGE);
-                                break;
-                            }
-                        } while (op != 4);
+                                switch (op) {
+                                case 1:
+                                    nombre = JOptionPane.showInputDialog("Digite el nombre");
+                                    clientes.get(buscar).setNombre(nombre);
+                                    break;
+                                case 2:
+                                    cel = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de telefono"));
+                                    clientes.get(buscar).setTelefono(cel);
+                                    break;
+                                case 3:
+                                    correo = JOptionPane.showInputDialog("Digite su correo");
+                                    clientes.get(buscar).setCorreo(correo);
+                                    break;
+                                case 4:
+                                    break;
+                                default:
+                                    JOptionPane.showMessageDialog(null, "Por favor digite una opcion", "ERROR",
+                                            JOptionPane.ERROR_MESSAGE);
+                                    break;
+                                }
 
+                            } while (op != 4);
+                        }
                         break;
                     case 4:
                         buscar = Integer
                                 .parseInt(JOptionPane.showInputDialog("Digite el ID del cliente que desea eliminar"));
-
-                        for (int i = 0; i > clientes.size(); i++) {
-                            if (clientes.get(buscar).getId() == buscar) {
-                                JOptionPane.showMessageDialog(null,
-                                        "El cliente con el ID " + buscar + " ha sido eliminado.", "Eliminar cliente",
-                                        JOptionPane.OK_CANCEL_OPTION);
-                                buscar = buscar - 1;
-                                clientes.remove(buscar);
-
-                            } else {
-                                JOptionPane.showMessageDialog(null,
-                                        "No hay registro de algun cliente de credito con ese ID.", "Aviso!",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                            }
+                        buscar = buscar - 1;
+                        if (buscar < 0 || buscar >= clientes.size()) {
+                            JOptionPane.showMessageDialog(null, "No hay registro de clientes de credito.", "Aviso!",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "El cliente " + clientes.get(buscar).getNombre() + " con el numero de ID "
+                                            + clientes.get(buscar).getId() + " ha sido eliminado.",
+                                    "Eliminar cliente", JOptionPane.OK_CANCEL_OPTION);
+                            clientes.remove(buscar);
                         }
 
                         break;
