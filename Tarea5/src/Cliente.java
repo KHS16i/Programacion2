@@ -5,6 +5,7 @@ public class Cliente {
     private int telefono;
     private String correo;
     private int id = 0;
+    private double ventas;
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -36,6 +37,18 @@ public class Cliente {
 
     public int getId() {
         return this.id;
+    }
+
+    public void setVentas(double ventas) {
+        this.ventas = ventas;
+    }
+
+    public double getVentas() {
+        return ventas;
+    }
+
+    public Cliente() {
+
     }
 
     public Cliente(String nombre, int telefono, String correo, int id) {

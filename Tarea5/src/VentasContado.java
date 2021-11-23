@@ -1,9 +1,9 @@
 public class VentasContado {
     private int id;
-    private String fecha;
-    private int hora;
-    private int monto;
+    private float monto;
     private String formaPago;
+    public String fecha;
+    public String hora;
 
     public void setId(int id) {
         this.id = id;
@@ -13,27 +13,11 @@ public class VentasContado {
         return id;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setHora(int hora) {
-        this.hora = hora;
-    }
-
-    public int getHora() {
-        return hora;
-    }
-
-    public void setMonto(int monto) {
+    public void setMonto(float monto) {
         this.monto = monto;
     }
 
-    public int getMonto() {
+    public float getMonto() {
         return monto;
     }
 
@@ -45,4 +29,31 @@ public class VentasContado {
         return formaPago;
     }
 
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public VentasContado(int id, String fecha, String hora, float monto, String formaPago) {
+        super();
+        this.id = id;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.monto = monto;
+        this.formaPago = formaPago;
+    }
+
+	public VentasContado(int id2, String fecha2, String hora2) {
+	}
 }

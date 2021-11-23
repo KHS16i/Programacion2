@@ -1,5 +1,7 @@
 public class VentasCredito extends VentasContado {
+
     private int idCredito;
+    private double montoCredito;
 
     public void setIdCredito(int idCredito) {
         this.idCredito = idCredito;
@@ -9,8 +11,16 @@ public class VentasCredito extends VentasContado {
         return idCredito;
     }
 
+    public void setMontoCredito(double montoCredito) {
+        this.montoCredito = montoCredito;
+    }
+
+    public double getMontoCredito() {
+        return montoCredito;
+    }
+
     @Override
-    public void setMonto(int monto) {
+    public void setMonto(float monto) {
         super.setMonto(monto);
     }
 
@@ -25,7 +35,13 @@ public class VentasCredito extends VentasContado {
     }
 
     @Override
-    public void setHora(int hora) {
+    public void setHora(String hora) {
         super.setHora(hora);
+    }
+
+    public VentasCredito(int idCredito, double montoCredito, int id, String fecha, String hora) {
+        super(id, fecha, hora);
+        this.idCredito = idCredito;
+        this.montoCredito = montoCredito;
     }
 }
